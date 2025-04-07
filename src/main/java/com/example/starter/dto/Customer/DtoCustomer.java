@@ -1,5 +1,6 @@
-package com.example.starter.dto;
+package com.example.starter.dto.Customer;
 
+import com.example.starter.dto.Address.DtoAddress;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;

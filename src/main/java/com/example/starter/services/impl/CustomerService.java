@@ -1,7 +1,8 @@
 package com.example.starter.services.impl;
 
-import com.example.starter.dto.DtoAddress;
-import com.example.starter.dto.DtoCustomer;
+import com.example.starter.dto.Address.DtoAddress;
+import com.example.starter.dto.Customer.DtoCustomer;
+import com.example.starter.dto.Customer.DtoCustomerIU;
 import com.example.starter.entities.Address;
 import com.example.starter.entities.Customer;
 import com.example.starter.repository.CustomerRepository;
@@ -33,5 +34,31 @@ public class CustomerService implements ICustomerService
         dtoCustomer.setAddress(dtoAddress);
 
         return dtoCustomer;
+    }
+
+    @Override
+    public DtoCustomer SaveCustomer(DtoCustomerIU dtoCustomer) {
+        Customer customer=new Customer();
+        Address address=new Address();
+        if(dtoCustomer.getAddress()!=null && dtoCustomer.getName()!=null){
+
+            BeanUtils.copyProperties(dtoCustomer,customer);
+            BeanUtils.copyProperties(dtoCustomer.getAddress(),address);
+            customer.setAddress(address);
+            Customer savedCustomer=customerRepository.save(customer);
+
+            DtoCustomer result=new DtoCustomer();
+            DtoAddress resultAddress=new DtoAddress();
+
+            BeanUtils.copyProperties(savedCustomer.getAddress(),resultAddress);
+            BeanUtils.copyProperties(savedCustomer,result);
+            result.setAddress(resultAddress);
+
+            return result;
+
+        }
+        else {
+            return null;
+        }
     }
 }

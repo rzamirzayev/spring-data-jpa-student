@@ -1,5 +1,6 @@
-package com.example.starter.dto;
+package com.example.starter.dto.Address;
 
+import com.example.starter.dto.Customer.DtoCustomer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

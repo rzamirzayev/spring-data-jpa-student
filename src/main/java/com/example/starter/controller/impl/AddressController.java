@@ -1,7 +1,7 @@
 package com.example.starter.controller.impl;
 
 import com.example.starter.controller.IAdressController;
-import com.example.starter.dto.DtoAddress;
+import com.example.starter.dto.Address.DtoAddress;
 import com.example.starter.services.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

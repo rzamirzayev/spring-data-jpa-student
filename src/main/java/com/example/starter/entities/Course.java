@@ -6,19 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "customer")
-@Data
+@Table(name = "course")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+@Data
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name")
     private String name;
-
-    @OneToOne()
-    private Address address;
-
 }

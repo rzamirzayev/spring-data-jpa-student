@@ -1,7 +1,9 @@
 package com.example.starter.services.impl;
 
-import com.example.starter.dto.DtoStudent;
-import com.example.starter.dto.DtoStudentIU;
+import com.example.starter.dto.Course.DtoCourse;
+import com.example.starter.dto.Student.DtoStudent;
+import com.example.starter.dto.Student.DtoStudentIU;
+import com.example.starter.entities.Course;
 import com.example.starter.entities.Student;
 import com.example.starter.repository.StudentRepository;
 import com.example.starter.services.IStudentService;
@@ -42,10 +44,22 @@ public class StudentService implements IStudentService {
 
     @Override
     public DtoStudent getStudentById(Integer id) {
-        DtoStudent response = new DtoStudent();
-        Optional<Student> optionalStudent= studentRepository.GetStudentById(id);
-        BeanUtils.copyProperties(optionalStudent.get(),response);
-        return response;
+        DtoStudent dtoStudent = new DtoStudent();
+
+        Optional<Student> optional= studentRepository.findById(id);
+        if(optional.isEmpty()) return null;
+        Student dbStudent = optional.get();
+        BeanUtils.copyProperties(dbStudent,dtoStudent);
+        if(dbStudent.getCourses()!=null && !dbStudent.getCourses().isEmpty()){
+            for (Course course : dbStudent.getCourses()) {
+                DtoCourse dtoCourse = new DtoCourse();
+                BeanUtils.copyProperties(course,dtoCourse);
+                dtoStudent.getCourse().add(dtoCourse);
+            }
+        }
+        return dtoStudent;
+
+
     }
 
     @Override

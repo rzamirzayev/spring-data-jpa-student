@@ -1,8 +1,8 @@
 package com.example.starter.controller.impl;
 
 import com.example.starter.controller.IStudentController;
-import com.example.starter.dto.DtoStudent;
-import com.example.starter.dto.DtoStudentIU;
+import com.example.starter.dto.Student.DtoStudent;
+import com.example.starter.dto.Student.DtoStudentIU;
 import com.example.starter.services.IStudentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

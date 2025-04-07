@@ -5,20 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table(name = "customer")
-@Data
+@Table(name="home")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+@Data
+public class Home {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private  Long id;
 
-    @Column(name="name")
-    private String name;
+    @Column(name = "price")
+    private BigDecimal price;
 
-    @OneToOne()
-    private Address address;
-
+    @OneToMany
+    private List<Room> room;
 }
