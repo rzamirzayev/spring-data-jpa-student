@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,34 @@ public class HomeServiceImpl implements IHomeService {
          }
      }
      return dtoHome;
+
+    }
+
+    @Override
+    public List<DtoHome> findAll() {
+        List<DtoHome> dtoHomeList = new ArrayList<>();
+        List<Home> dbHomelist=homeRepository.findAll();
+        if (dbHomelist==null && dbHomelist.isEmpty()){
+            return null;
+        }
+        for (Home home : dbHomelist) {
+            DtoHome dtoHome = new DtoHome();
+            BeanUtils.copyProperties(home, dtoHome);
+
+            List<Room> rooms = home.getRoom();
+            if (rooms != null) {
+                for (Room room : rooms) {
+                    DtoRoom roomDto = new DtoRoom();
+                    BeanUtils.copyProperties(room, roomDto);
+                    dtoHome.getRooms().add(roomDto);
+
+                }
+
+            }
+
+            dtoHomeList.add(dtoHome);
+        }
+        return dtoHomeList;
 
     }
 }

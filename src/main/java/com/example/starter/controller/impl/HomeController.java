@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("rest/api/home")
 public class HomeController implements IHomeController {
@@ -21,4 +23,11 @@ public class HomeController implements IHomeController {
     public DtoHome findByIdHome(@PathVariable(name = "id") Long id) {
         return homeService.findById(id);
     }
+
+    @Override
+    @GetMapping(path = "/list")
+    public List<DtoHome> findAllHomes() {
+        return homeService.findAll();
+    }
+
 }
