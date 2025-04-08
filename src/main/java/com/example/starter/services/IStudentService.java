@@ -1,8 +1,7 @@
 package com.example.starter.services;
 
-import com.example.starter.dto.DtoStudent;
-import com.example.starter.dto.DtoStudentIU;
-import com.example.starter.entities.Student;
+import com.example.starter.dto.Student.DtoStudent;
+import com.example.starter.dto.Student.DtoStudentIU;
 
 import java.util.List;
 

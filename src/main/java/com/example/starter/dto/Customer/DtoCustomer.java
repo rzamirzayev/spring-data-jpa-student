@@ -1,0 +1,18 @@
+package com.example.starter.dto.Customer;
+
+import com.example.starter.dto.Address.DtoAddress;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class DtoCustomer {
+    private Long id;
+    private String name;
+    private DtoAddress address;
+
+}
