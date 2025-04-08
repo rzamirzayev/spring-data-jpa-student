@@ -45,6 +45,7 @@ public class CustomerService implements ICustomerService
             BeanUtils.copyProperties(dtoCustomer,customer);
             BeanUtils.copyProperties(dtoCustomer.getAddress(),address);
             customer.setAddress(address);
+
             Customer savedCustomer=customerRepository.save(customer);
 
             DtoCustomer result=new DtoCustomer();
